@@ -1,0 +1,1858 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignments        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pipeline_data      |
+| sales_data         |
+| students_db        |
+| sys                |
++--------------------+
+8 rows in set (0.02 sec)
+
+mysql> use assignments;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> use students_db;
+Database changed
+mysql> show tables;
++-----------------------+
+| Tables_in_students_db |
++-----------------------+
+| accounts              |
+| customers             |
+| depertements          |
+| depositor             |
+| students              |
++-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> select customer_id, customer_name, customer_street, customer_city from Customer c left join Account ac left join Depositor d  on ac.account_number = d.account_number on c.customer_id = d.customer.id;
+ERROR 1146 (42S02): Table 'students_db.customer' doesn't exist
+mysql> select * from assignments;
+ERROR 1146 (42S02): Table 'students_db.assignments' doesn't exist
+mysql> use database assignments;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use databases assignments;
+ERROR 1049 (42000): Unknown database 'databases'
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignments        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pipeline_data      |
+| sales_data         |
+| students_db        |
+| sys                |
++--------------------+
+8 rows in set (0.04 sec)
+
+mysql> use assignments;
+Database changed
+mysql> select * from assignments;
+ERROR 1146 (42S02): Table 'assignments.assignments' doesn't exist
+mysql> use students_db;
+Database changed
+mysql> select * from students_db;
+ERROR 1146 (42S02): Table 'students_db.students_db' doesn't exist
+mysql> create database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create database negatives;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select -10, abs(-10);
++-----+----------+
+| -10 | abs(-10) |
++-----+----------+
+| -10 |       10 |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql> select -10, abs(-10) negative;
++-----+----------+
+| -10 | negative |
++-----+----------+
+| -10 |       10 |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql> select -10, abs(-10) negative to postive;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to postive' at line 1
+mysql> select -10, abs(-10) negative_to_postive;
++-----+---------------------+
+| -10 | negative_to_postive |
++-----+---------------------+
+| -10 |                  10 |
++-----+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select  * fom shareholder;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fom shareholder' at line 1
+mysql> select  * from shareholder;
++------------+-------+------+----------+
+| identifier | name  | age  | lastname |
++------------+-------+------+----------+
+|        962 | jane  |   30 | NULL     |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
+|        962 | jane  |   30 | NULL     |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
++------------+-------+------+----------+
+18 rows in set (0.01 sec)
+
+mysql> select  * from shareholder;
++------------+-------+------+----------+-----------+
+| identifier | name  | age  | lastname | othername |
++------------+-------+------+----------+-----------+
+|        962 | jane  |   30 | NULL     | NULL      |
+|       7658 | john  |   52 | NULL     | NULL      |
+|       3859 | jim   |   45 | NULL     | NULL      |
+|       5523 | susan |   20 | NULL     | NULL      |
+|       4711 | ari   | NULL | NULL     | NULL      |
+|       8334 | null  |   52 | NULL     | NULL      |
+|       6455 | jason | NULL | NULL     | NULL      |
+|       3822 | jill  |   39 | NULL     | NULL      |
+|       3340 | cathy |   42 | NULL     | NULL      |
+|        962 | jane  |   30 | NULL     | NULL      |
+|       7658 | john  |   52 | NULL     | NULL      |
+|       3859 | jim   |   45 | NULL     | NULL      |
+|       5523 | susan |   20 | NULL     | NULL      |
+|       4711 | ari   | NULL | NULL     | NULL      |
+|       8334 | null  |   52 | NULL     | NULL      |
+|       6455 | jason | NULL | NULL     | NULL      |
+|       3822 | jill  |   39 | NULL     | NULL      |
+|       3340 | cathy |   42 | NULL     | NULL      |
++------------+-------+------+----------+-----------+
+18 rows in set (0.00 sec)
+
+mysql> update shareholder set ^Lastname="jamirah" where identifier=962;
+ERROR 1054 (42S22): Unknown column 'astname' in 'field list'
+mysql> update shareholder set lastname="jamirah" where identifier=962;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select  * from shareholder;
++------------+-------+------+----------+-----------+
+| identifier | name  | age  | lastname | othername |
++------------+-------+------+----------+-----------+
+|        962 | jane  |   30 | jamirah  | NULL      |
+|       7658 | john  |   52 | NULL     | NULL      |
+|       3859 | jim   |   45 | NULL     | NULL      |
+|       5523 | susan |   20 | NULL     | NULL      |
+|       4711 | ari   | NULL | NULL     | NULL      |
+|       8334 | null  |   52 | NULL     | NULL      |
+|       6455 | jason | NULL | NULL     | NULL      |
+|       3822 | jill  |   39 | NULL     | NULL      |
+|       3340 | cathy |   42 | NULL     | NULL      |
+|        962 | jane  |   30 | jamirah  | NULL      |
+|       7658 | john  |   52 | NULL     | NULL      |
+|       3859 | jim   |   45 | NULL     | NULL      |
+|       5523 | susan |   20 | NULL     | NULL      |
+|       4711 | ari   | NULL | NULL     | NULL      |
+|       8334 | null  |   52 | NULL     | NULL      |
+|       6455 | jason | NULL | NULL     | NULL      |
+|       3822 | jill  |   39 | NULL     | NULL      |
+|       3340 | cathy |   42 | NULL     | NULL      |
++------------+-------+------+----------+-----------+
+18 rows in set (0.00 sec)
+
+mysql> alter table shareholder drop column othername;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select  * from shareholder;
++------------+-------+------+----------+
+| identifier | name  | age  | lastname |
++------------+-------+------+----------+
+|        962 | jane  |   30 | jamirah  |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
+|        962 | jane  |   30 | jamirah  |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
++------------+-------+------+----------+
+18 rows in set (0.00 sec)
+
+mysql> select * name,lastname shareholder;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name,lastname shareholder' at line 1
+mysql> select name,lastname shareholder;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select name,lastname from shareholder;
++-------+----------+
+| name  | lastname |
++-------+----------+
+| jane  | jamirah  |
+| john  | NULL     |
+| jim   | NULL     |
+| susan | NULL     |
+| ari   | NULL     |
+| null  | NULL     |
+| jason | NULL     |
+| jill  | NULL     |
+| cathy | NULL     |
+| jane  | jamirah  |
+| john  | NULL     |
+| jim   | NULL     |
+| susan | NULL     |
+| ari   | NULL     |
+| null  | NULL     |
+| jason | NULL     |
+| jill  | NULL     |
+| cathy | NULL     |
++-------+----------+
+18 rows in set (0.00 sec)
+
+mysql> select concat(name," ",lastname) fullname from shareholder;
++--------------+
+| fullname     |
++--------------+
+| jane jamirah |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| jane jamirah |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
+| NULL         |
++--------------+
+18 rows in set (0.00 sec)
+
+mysql> select * concat(name," ",lastname)fullname,age +10 as newage from shareholder;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'concat(name," ",lastname)fullname,age +10 as newage from shareholder' at line 1
+mysql> select * ,concat(name," ",lastname)fullname,age +10 as newage from shareholder;
++------------+-------+------+----------+--------------+--------+
+| identifier | name  | age  | lastname | fullname     | newage |
++------------+-------+------+----------+--------------+--------+
+|        962 | jane  |   30 | jamirah  | jane jamirah |     40 |
+|       7658 | john  |   52 | NULL     | NULL         |     62 |
+|       3859 | jim   |   45 | NULL     | NULL         |     55 |
+|       5523 | susan |   20 | NULL     | NULL         |     30 |
+|       4711 | ari   | NULL | NULL     | NULL         |   NULL |
+|       8334 | null  |   52 | NULL     | NULL         |     62 |
+|       6455 | jason | NULL | NULL     | NULL         |   NULL |
+|       3822 | jill  |   39 | NULL     | NULL         |     49 |
+|       3340 | cathy |   42 | NULL     | NULL         |     52 |
+|        962 | jane  |   30 | jamirah  | jane jamirah |     40 |
+|       7658 | john  |   52 | NULL     | NULL         |     62 |
+|       3859 | jim   |   45 | NULL     | NULL         |     55 |
+|       5523 | susan |   20 | NULL     | NULL         |     30 |
+|       4711 | ari   | NULL | NULL     | NULL         |   NULL |
+|       8334 | null  |   52 | NULL     | NULL         |     62 |
+|       6455 | jason | NULL | NULL     | NULL         |   NULL |
+|       3822 | jill  |   39 | NULL     | NULL         |     49 |
+|       3340 | cathy |   42 | NULL     | NULL         |     52 |
++------------+-------+------+----------+--------------+--------+
+18 rows in set (0.01 sec)
+
+mysql> select * ,concat(name," ",lastname)fullname,coalesce(age,0) +10 as newage from shareholder;
++------------+-------+------+----------+--------------+--------+
+| identifier | name  | age  | lastname | fullname     | newage |
++------------+-------+------+----------+--------------+--------+
+|        962 | jane  |   30 | jamirah  | jane jamirah |     40 |
+|       7658 | john  |   52 | NULL     | NULL         |     62 |
+|       3859 | jim   |   45 | NULL     | NULL         |     55 |
+|       5523 | susan |   20 | NULL     | NULL         |     30 |
+|       4711 | ari   | NULL | NULL     | NULL         |     10 |
+|       8334 | null  |   52 | NULL     | NULL         |     62 |
+|       6455 | jason | NULL | NULL     | NULL         |     10 |
+|       3822 | jill  |   39 | NULL     | NULL         |     49 |
+|       3340 | cathy |   42 | NULL     | NULL         |     52 |
+|        962 | jane  |   30 | jamirah  | jane jamirah |     40 |
+|       7658 | john  |   52 | NULL     | NULL         |     62 |
+|       3859 | jim   |   45 | NULL     | NULL         |     55 |
+|       5523 | susan |   20 | NULL     | NULL         |     30 |
+|       4711 | ari   | NULL | NULL     | NULL         |     10 |
+|       8334 | null  |   52 | NULL     | NULL         |     62 |
+|       6455 | jason | NULL | NULL     | NULL         |     10 |
+|       3822 | jill  |   39 | NULL     | NULL         |     49 |
+|       3340 | cathy |   42 | NULL     | NULL         |     52 |
++------------+-------+------+----------+--------------+--------+
+18 rows in set (0.00 sec)
+
+mysql> select * from shareholder;
++------------+-------+------+----------+
+| identifier | name  | age  | lastname |
++------------+-------+------+----------+
+|        962 | jane  |   30 | jamirah  |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
+|        962 | jane  |   30 | jamirah  |
+|       7658 | john  |   52 | NULL     |
+|       3859 | jim   |   45 | NULL     |
+|       5523 | susan |   20 | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       8334 | null  |   52 | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       3822 | jill  |   39 | NULL     |
+|       3340 | cathy |   42 | NULL     |
++------------+-------+------+----------+
+18 rows in set (0.00 sec)
+
+mysql> select name,age,lastname from shareholder;
++-------+------+----------+
+| name  | age  | lastname |
++-------+------+----------+
+| jane  |   30 | jamirah  |
+| john  |   52 | NULL     |
+| jim   |   45 | NULL     |
+| susan |   20 | NULL     |
+| ari   | NULL | NULL     |
+| null  |   52 | NULL     |
+| jason | NULL | NULL     |
+| jill  |   39 | NULL     |
+| cathy |   42 | NULL     |
+| jane  |   30 | jamirah  |
+| john  |   52 | NULL     |
+| jim   |   45 | NULL     |
+| susan |   20 | NULL     |
+| ari   | NULL | NULL     |
+| null  |   52 | NULL     |
+| jason | NULL | NULL     |
+| jill  |   39 | NULL     |
+| cathy |   42 | NULL     |
++-------+------+----------+
+18 rows in set (0.00 sec)
+
+mysql> select name,age,lastname from shareholder order by case when ageis null then 1 else 0 end, age;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'null then 1 else 0 end, age' at line 1
+mysql> select name,age,lastname from shareholder order by case when age is null then 1 else 0 end, age;
++-------+------+----------+
+| name  | age  | lastname |
++-------+------+----------+
+| susan |   20 | NULL     |
+| susan |   20 | NULL     |
+| jane  |   30 | jamirah  |
+| jane  |   30 | jamirah  |
+| jill  |   39 | NULL     |
+| jill  |   39 | NULL     |
+| cathy |   42 | NULL     |
+| cathy |   42 | NULL     |
+| jim   |   45 | NULL     |
+| jim   |   45 | NULL     |
+| john  |   52 | NULL     |
+| null  |   52 | NULL     |
+| john  |   52 | NULL     |
+| null  |   52 | NULL     |
+| ari   | NULL | NULL     |
+| jason | NULL | NULL     |
+| ari   | NULL | NULL     |
+| jason | NULL | NULL     |
++-------+------+----------+
+18 rows in set (0.00 sec)
+
+mysql> select * from shareholder where age is null;
++------------+-------+------+----------+
+| identifier | name  | age  | lastname |
++------------+-------+------+----------+
+|       4711 | ari   | NULL | NULL     |
+|       6455 | jason | NULL | NULL     |
+|       4711 | ari   | NULL | NULL     |
+|       6455 | jason | NULL | NULL     |
++------------+-------+------+----------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_students_db |
++-----------------------+
+| accounts              |
+| customers             |
+| depertements          |
+| depositor             |
+| shareholder           |
+| shareholders          |
+| students              |
++-----------------------+
+7 rows in set (0.02 sec)
+
+mysql> select * from students;
++------------+------------+--------------+--------+---------------+-----------------+---------------+
+| student_id | first_name | last_name    | gender | date_of_birth | enrollment_year | department_id |
++------------+------------+--------------+--------+---------------+-----------------+---------------+
+|        101 | Alice      | Uwimana      | Female | 2003-05-12    |            2023 |             1 |
+|        102 | Jean       | Ndayishimiye | Male   | 2002-11-08    |            2022 |             3 |
++------------+------------+--------------+--------+---------------+-----------------+---------------+
+2 rows in set (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignments        |
+| information_schema |
+| mysql              |
+| negatives          |
+| performance_schema |
+| pipeline_data      |
+| sales_data         |
+| students_db        |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use pipeline_data;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_pipeline_data |
++-------------------------+
+| financial               |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from financial;
++----+-----------+---------+--------+------+
+| id | category  | type    | amount | city |
++----+-----------+---------+--------+------+
+|  1 | Transport | Expense |  50000 | NULL |
+|  2 | sales     | income  | 450000 | NULL |
+|  3 | utilities | expense |  80000 | NULL |
+|  4 | sales     | income  | 600000 | NULL |
++----+-----------+---------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() from financial;
++----+-----------+---------+--------+--------------------+
+| id | category  | type    | amount | sum(amount) over() |
++----+-----------+---------+--------+--------------------+
+|  1 | Transport | Expense |  50000 |            1180000 |
+|  2 | sales     | income  | 450000 |            1180000 |
+|  3 | utilities | expense |  80000 |            1180000 |
+|  4 | sales     | income  | 600000 |            1180000 |
++----+-----------+---------+--------+--------------------+
+4 rows in set (0.02 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() from financial all sum;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all sum' at line 1
+mysql> select id,category,type,amount,sum(amount) over() from financial all_sum;
++----+-----------+---------+--------+--------------------+
+| id | category  | type    | amount | sum(amount) over() |
++----+-----------+---------+--------+--------------------+
+|  1 | Transport | Expense |  50000 |            1180000 |
+|  2 | sales     | income  | 450000 |            1180000 |
+|  3 | utilities | expense |  80000 |            1180000 |
+|  4 | sales     | income  | 600000 |            1180000 |
++----+-----------+---------+--------+--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total from financial all_sum;
++----+-----------+---------+--------+---------+
+| id | category  | type    | amount | total   |
++----+-----------+---------+--------+---------+
+|  1 | Transport | Expense |  50000 | 1180000 |
+|  2 | sales     | income  | 450000 | 1180000 |
+|  3 | utilities | expense |  80000 | 1180000 |
+|  4 | sales     | income  | 600000 | 1180000 |
++----+-----------+---------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total from financial;
++----+-----------+---------+--------+---------+
+| id | category  | type    | amount | total   |
++----+-----------+---------+--------+---------+
+|  1 | Transport | Expense |  50000 | 1180000 |
+|  2 | sales     | income  | 450000 | 1180000 |
+|  3 | utilities | expense |  80000 | 1180000 |
+|  4 | sales     | income  | 600000 | 1180000 |
++----+-----------+---------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,(amount)/total * 100) from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from financial' at line 1
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/sum(amount) * 100)  totapercentage from financial;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'pipeline_data.financial.id'; this is incompatible with sql_mode=only_full_group_by
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/total * 100)  totapercentage from financial;
+ERROR 1054 (42S22): Unknown column 'total' in 'field list'
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/sum(amount) over() * 100)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |         4.2373 |
+|  2 | sales     | income  | 450000 | 1180000 |        38.1356 |
+|  3 | utilities | expense |  80000 | 1180000 |         6.7797 |
+|  4 | sales     | income  | 600000 | 1180000 |        50.8475 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,round(amount/sum(amount) over() * 100,2)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |           4.24 |
+|  2 | sales     | income  | 450000 | 1180000 |          38.14 |
+|  3 | utilities | expense |  80000 | 1180000 |           6.78 |
+|  4 | sales     | income  | 600000 | 1180000 |          50.85 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> select category from financial group by Expense;
+ERROR 1054 (42S22): Unknown column 'Expense' in 'group statement'
+mysql>
+mysql> select category from financial group by type;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'pipeline_data.financial.category' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select * from financial where tpye="Expense";
+ERROR 1054 (42S22): Unknown column 'tpye' in 'where clause'
+mysql> select * from financial where type="Expense";
++----+-----------+---------+--------+------+
+| id | category  | type    | amount | city |
++----+-----------+---------+--------+------+
+|  1 | Transport | Expense |  50000 | NULL |
+|  3 | utilities | expense |  80000 | NULL |
++----+-----------+---------+--------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from financial where type="Expense" group by id;
++----+-----------+---------+--------+------+
+| id | category  | type    | amount | city |
++----+-----------+---------+--------+------+
+|  1 | Transport | Expense |  50000 | NULL |
+|  3 | utilities | expense |  80000 | NULL |
++----+-----------+---------+--------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from financial where  order by type;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by type' at line 1
+mysql> select * from financial order by type;
++----+-----------+---------+--------+------+
+| id | category  | type    | amount | city |
++----+-----------+---------+--------+------+
+|  1 | Transport | Expense |  50000 | NULL |
+|  3 | utilities | expense |  80000 | NULL |
+|  2 | sales     | income  | 450000 | NULL |
+|  4 | sales     | income  | 600000 | NULL |
++----+-----------+---------+--------+------+
+4 rows in set (0.02 sec)
+
+mysql> select * from financial order by type desc;
++----+-----------+---------+--------+------+
+| id | category  | type    | amount | city |
++----+-----------+---------+--------+------+
+|  2 | sales     | income  | 450000 | NULL |
+|  4 | sales     | income  | 600000 | NULL |
+|  1 | Transport | Expense |  50000 | NULL |
+|  3 | utilities | expense |  80000 | NULL |
++----+-----------+---------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,round(amount/sum(amount) over() * 100,2)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |           4.24 |
+|  2 | sales     | income  | 450000 | 1180000 |          38.14 |
+|  3 | utilities | expense |  80000 | 1180000 |           6.78 |
+|  4 | sales     | income  | 600000 | 1180000 |          50.85 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/sum(amount) over() * 100)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |         4.2373 |
+|  2 | sales     | income  | 450000 | 1180000 |        38.1356 |
+|  3 | utilities | expense |  80000 | 1180000 |         6.7797 |
+|  4 | sales     | income  | 600000 | 1180000 |        50.8475 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,(amount/sum(amount) over() * 100)  totapercentage from financial;
++----+-----------+---------+--------+----------------+
+| id | category  | type    | amount | totapercentage |
++----+-----------+---------+--------+----------------+
+|  1 | Transport | Expense |  50000 |         4.2373 |
+|  2 | sales     | income  | 450000 |        38.1356 |
+|  3 | utilities | expense |  80000 |         6.7797 |
+|  4 | sales     | income  | 600000 |        50.8475 |
++----+-----------+---------+--------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,total over() * 100)  totapercentage from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over() * 100)  totapercentage from financial' at line 1
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/total over() * 100)  totapercentage from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over() * 100)  totapercentage from financial' at line 1
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/total over() * 100)  totapercentage from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over() * 100)  totapercentage from financial' at line 1
+mysql> select id,category,type,amount,sum(amount) over() total,(amount/sum(amount) over() * 100)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |         4.2373 |
+|  2 | sales     | income  | 450000 | 1180000 |        38.1356 |
+|  3 | utilities | expense |  80000 | 1180000 |         6.7797 |
+|  4 | sales     | income  | 600000 | 1180000 |        50.8475 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,round((amount/sum(amount) over() * 100,1)  totapercentage from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from financial' at line 1
+mysql> select id,category,type,amount,sum(amount) over() total,round(amount/sum(amount) over() * 100,1)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |            4.2 |
+|  2 | sales     | income  | 450000 | 1180000 |           38.1 |
+|  3 | utilities | expense |  80000 | 1180000 |            6.8 |
+|  4 | sales     | income  | 600000 | 1180000 |           50.8 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select id,category,type,amount,sum(amount) over() total,round(cast(amount as float)/sum(amount) over() * 100,1)  totapercentage from financial;
++----+-----------+---------+--------+---------+----------------+
+| id | category  | type    | amount | total   | totapercentage |
++----+-----------+---------+--------+---------+----------------+
+|  1 | Transport | Expense |  50000 | 1180000 |            4.2 |
+|  2 | sales     | income  | 450000 | 1180000 |           38.1 |
+|  3 | utilities | expense |  80000 | 1180000 |            6.8 |
+|  4 | sales     | income  | 600000 | 1180000 |           50.8 |
++----+-----------+---------+--------+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> desc financial;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| category | varchar(50) | YES  |     | NULL    |       |
+| type     | varchar(50) | YES  |     | NULL    |       |
+| amount   | int         | YES  |     | NULL    |       |
+| city     | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> select id,category,type,amount avg(ammount)over() average_amount from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(ammount)over() average_amount from financial' at line 1
+mysql> select id,category,type,amount avg(ammount) over() average_amount from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(ammount) over() average_amount from financial' at line 1
+mysql> select id,category,type,amount avg(amount) over() average_amount from financial;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(amount) over() average_amount from financial' at line 1
+mysql> select id,category,type,amount ,avg(amount) over() average_amount from financial;
++----+-----------+---------+--------+----------------+
+| id | category  | type    | amount | average_amount |
++----+-----------+---------+--------+----------------+
+|  1 | Transport | Expense |  50000 |    295000.0000 |
+|  2 | sales     | income  | 450000 |    295000.0000 |
+|  3 | utilities | expense |  80000 |    295000.0000 |
+|  4 | sales     | income  | 600000 |    295000.0000 |
++----+-----------+---------+--------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> create orders table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'orders table' at line 1
+mysql> create table orders;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table orders(
+    -> order_id int,
+    -> product_id varchar (20),
+    -> order_date varchar(20),
+    -> sales int,
+    -> primary key order_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql> create table orders(
+    -> order_id int,
+    -> product_id varchar (20),
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table orders(
+    -> order_id int,
+    -> product_id int,
+    -> order_date varchar(20),
+    -> sales int,
+    -> primary key (order_id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql> create table orders(
+    -> order_id int,
+    -> product_id int,
+    -> order_date varchar(20),
+    -> sales int,
+    -> primary key (order_id));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into orders values (1,101,"2025-01-01",10);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into orders values (3,101,"2025-01-10",20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into orders values (8,101,"2025-02-18",90);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (9,101,"2025-03-10",20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (2,102,"2025-01-05",15);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (7,102,"2025-03-10",30);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (10,102,"2025-01-05",60);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (5,104,"2025-02-15",25);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (6,104,"2025-03-15",50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into orders values (4,105,"2025-01-20",60);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from orders;
++----------+------------+------------+-------+
+| order_id | product_id | order_date | sales |
++----------+------------+------------+-------+
+|        1 |        101 | 2025-01-01 |    10 |
+|        2 |        102 | 2025-01-05 |    15 |
+|        3 |        101 | 2025-01-10 |    20 |
+|        4 |        105 | 2025-01-20 |    60 |
+|        5 |        104 | 2025-02-15 |    25 |
+|        6 |        104 | 2025-03-15 |    50 |
+|        7 |        102 | 2025-03-10 |    30 |
+|        8 |        101 | 2025-02-18 |    90 |
+|        9 |        101 | 2025-03-10 |    20 |
+|       10 |        102 | 2025-01-05 |    60 |
++----------+------------+------------+-------+
+10 rows in set (0.02 sec)
+
+mysql> select order_id,product_id,order_date,sales sum(amount),over() total_sales from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum(amount),over() total_sales from orders' at line 1
+mysql> select order_id,product_id,order_date,sales,sum(amount),over() total_sales from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over() total_sales from orders' at line 1
+mysql> select order_id,product_id,order_date,sales,sum(sales),over() total_sales from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'over() total_sales from orders' at line 1
+mysql> select order_id,product_id,order_date,sales,avg(sales) over() total_sales from orders;
++----------+------------+------------+-------+-------------+
+| order_id | product_id | order_date | sales | total_sales |
++----------+------------+------------+-------+-------------+
+|        1 |        101 | 2025-01-01 |    10 |     38.0000 |
+|        2 |        102 | 2025-01-05 |    15 |     38.0000 |
+|        3 |        101 | 2025-01-10 |    20 |     38.0000 |
+|        4 |        105 | 2025-01-20 |    60 |     38.0000 |
+|        5 |        104 | 2025-02-15 |    25 |     38.0000 |
+|        6 |        104 | 2025-03-15 |    50 |     38.0000 |
+|        7 |        102 | 2025-03-10 |    30 |     38.0000 |
+|        8 |        101 | 2025-02-18 |    90 |     38.0000 |
+|        9 |        101 | 2025-03-10 |    20 |     38.0000 |
+|       10 |        102 | 2025-01-05 |    60 |     38.0000 |
++----------+------------+------------+-------+-------------+
+10 rows in set (0.01 sec)
+
+mysql> select * (select order_id,product_id,order_date,sales,avg(sales) over() total_sales from orders)t where sales>total_sales;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(select order_id,product_id,order_date,sales,avg(sales) over() total_sales from ' at line 1
+mysql> select * from (select order_id,product_id,order_date,sales,avg(sales) over() total_sales from orders)t where sales>total_sales;
++----------+------------+------------+-------+-------------+
+| order_id | product_id | order_date | sales | total_sales |
++----------+------------+------------+-------+-------------+
+|        4 |        105 | 2025-01-20 |    60 |     38.0000 |
+|        6 |        104 | 2025-03-15 |    50 |     38.0000 |
+|        8 |        101 | 2025-02-18 |    90 |     38.0000 |
+|       10 |        102 | 2025-01-05 |    60 |     38.0000 |
++----------+------------+------------+-------+-------------+
+4 rows in set (0.02 sec)
+
+mysql> select * from (select order_id,product_id,order_date,sales,avg(sales) over() total_sales from orders) where sales>total_sales;
+ERROR 1248 (42000): Every derived table must have its own alias
+mysql> select * from (select order_id,product_id,order_date,sales,avg(sales) over() total_sales from orders)t where sales>total_sales;
++----------+------------+------------+-------+-------------+
+| order_id | product_id | order_date | sales | total_sales |
++----------+------------+------------+-------+-------------+
+|        4 |        105 | 2025-01-20 |    60 |     38.0000 |
+|        6 |        104 | 2025-03-15 |    50 |     38.0000 |
+|        8 |        101 | 2025-02-18 |    90 |     38.0000 |
+|       10 |        102 | 2025-01-05 |    60 |     38.0000 |
++----------+------------+------------+-------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from (select order_id,product_id,order_date,sales,min(sales) over() total_sales from orders)t where sales>total_sales;
++----------+------------+------------+-------+-------------+
+| order_id | product_id | order_date | sales | total_sales |
++----------+------------+------------+-------+-------------+
+|        2 |        102 | 2025-01-05 |    15 |          10 |
+|        3 |        101 | 2025-01-10 |    20 |          10 |
+|        4 |        105 | 2025-01-20 |    60 |          10 |
+|        5 |        104 | 2025-02-15 |    25 |          10 |
+|        6 |        104 | 2025-03-15 |    50 |          10 |
+|        7 |        102 | 2025-03-10 |    30 |          10 |
+|        8 |        101 | 2025-02-18 |    90 |          10 |
+|        9 |        101 | 2025-03-10 |    20 |          10 |
+|       10 |        102 | 2025-01-05 |    60 |          10 |
++----------+------------+------------+-------+-------------+
+9 rows in set (0.01 sec)
+
+mysql> select * from (select order_id,product_id,order_date,sales,min(sales) over() total_sales from orders)t wheretotal_sales=10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'wheretotal_sales=10' at line 1
+mysql> select * from (select order_id,product_id,order_date,sales,min(sales) over() lowest from orders)t where sales = lowest;
++----------+------------+------------+-------+--------+
+| order_id | product_id | order_date | sales | lowest |
++----------+------------+------------+-------+--------+
+|        1 |        101 | 2025-01-01 |    10 |     10 |
++----------+------------+------------+-------+--------+
+1 row in set (0.01 sec)
+
+mysql> select * from (select order_id,product_id,order_date,sales,max(sales) over() highest from orders)t where sales = highest;
++----------+------------+------------+-------+---------+
+| order_id | product_id | order_date | sales | highest |
++----------+------------+------------+-------+---------+
+|        8 |        101 | 2025-02-18 |    90 |      90 |
++----------+------------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select order_id,product_id,order_date,sales avg(sales) over(partition by product_id) avgsales from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(sales) over(partition by product_id) avgsales from orders' at line 1
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales from orders;
++----------+------------+------------+-------+----------+
+| order_id | product_id | order_date | sales | avgsales |
++----------+------------+------------+-------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |
++----------+------------+------------+-------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over() avgsales, from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from orders' at line 1
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over() avgsales from orders;
++----------+------------+------------+-------+----------+
+| order_id | product_id | order_date | sales | avgsales |
++----------+------------+------------+-------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  38.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  38.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  38.0000 |
+|        4 |        105 | 2025-01-20 |    60 |  38.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  38.0000 |
+|        6 |        104 | 2025-03-15 |    50 |  38.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  38.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  38.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  38.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  38.0000 |
++----------+------------+------------+-------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales from orders;
++----------+------------+------------+-------+----------+
+| order_id | product_id | order_date | sales | avgsales |
++----------+------------+------------+-------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |
++----------+------------+------------+-------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales,avg(sales) over(partition by product_id order by order_date) avgsales from orders;
++----------+------------+------------+-------+----------+----------+
+| order_id | product_id | order_date | sales | avgsales | avgsales |
++----------+------------+------------+-------+----------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |  10.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |  15.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |  40.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |  37.5000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |  37.5000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |  25.0000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |  60.0000 |
++----------+------------+------------+-------+----------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales,avg(sales) over partition by product_id order by order_date) avgsales,avg(sales) over(partition by product_id) avgsales from orders;
++----------+------------+------------+-------+----------+----------+----------+
+| order_id | product_id | order_date | sales | avgsales | avgsales | avgsales |
++----------+------------+------------+-------+----------+----------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |  10.0000 |  35.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |  15.0000 |  35.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |  40.0000 |  35.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |  35.0000 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |  37.5000 |  35.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |  37.5000 |  35.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |  35.0000 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |  25.0000 |  37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |  37.5000 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |  60.0000 |  60.0000 |
++----------+------------+------------+-------+----------+----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales from orders;
++----------+------------+------------+-------+----------+
+| order_id | product_id | order_date | sales | avgsales |
++----------+------------+------------+-------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |
++----------+------------+------------+-------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id) avgsales from orders;
++----------+------------+------------+-------+----------+
+| order_id | product_id | order_date | sales | avgsales |
++----------+------------+------------+-------+----------+
+|        1 |        101 | 2025-01-01 |    10 |  35.0000 |
+|        3 |        101 | 2025-01-10 |    20 |  35.0000 |
+|        8 |        101 | 2025-02-18 |    90 |  35.0000 |
+|        9 |        101 | 2025-03-10 |    20 |  35.0000 |
+|        2 |        102 | 2025-01-05 |    15 |  35.0000 |
+|        7 |        102 | 2025-03-10 |    30 |  35.0000 |
+|       10 |        102 | 2025-01-05 |    60 |  35.0000 |
+|        5 |        104 | 2025-02-15 |    25 |  37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |  37.5000 |
+|        4 |        105 | 2025-01-20 |    60 |  60.0000 |
++----------+------------+------------+-------+----------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id order by order_date rows between current row and 1 following) rollingavg from orders;
++----------+------------+------------+-------+------------+
+| order_id | product_id | order_date | sales | rollingavg |
++----------+------------+------------+-------+------------+
+|        1 |        101 | 2025-01-01 |    10 |    15.0000 |
+|        3 |        101 | 2025-01-10 |    20 |    55.0000 |
+|        8 |        101 | 2025-02-18 |    90 |    55.0000 |
+|        9 |        101 | 2025-03-10 |    20 |    20.0000 |
+|        2 |        102 | 2025-01-05 |    15 |    37.5000 |
+|       10 |        102 | 2025-01-05 |    60 |    45.0000 |
+|        7 |        102 | 2025-03-10 |    30 |    30.0000 |
+|        5 |        104 | 2025-02-15 |    25 |    37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |    50.0000 |
+|        4 |        105 | 2025-01-20 |    60 |    60.0000 |
++----------+------------+------------+-------+------------+
+10 rows in set (0.02 sec)
+
+mysql> select order_id,product_id,order_date,sales ,avg(sales) over(partition by product_id order by order_date rows between current row and 1 following) rollingavg from orders;
++----------+------------+------------+-------+------------+
+| order_id | product_id | order_date | sales | rollingavg |
++----------+------------+------------+-------+------------+
+|        1 |        101 | 2025-01-01 |    10 |    15.0000 |
+|        3 |        101 | 2025-01-10 |    20 |    55.0000 |
+|        8 |        101 | 2025-02-18 |    90 |    55.0000 |
+|        9 |        101 | 2025-03-10 |    20 |    20.0000 |
+|        2 |        102 | 2025-01-05 |    15 |    37.5000 |
+|       10 |        102 | 2025-01-05 |    60 |    45.0000 |
+|        7 |        102 | 2025-03-10 |    30 |    30.0000 |
+|        5 |        104 | 2025-02-15 |    25 |    37.5000 |
+|        6 |        104 | 2025-03-15 |    50 |    50.0000 |
+|        4 |        105 | 2025-01-20 |    60 |    60.0000 |
++----------+------------+------------+-------+------------+
+10 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+------------+------------+-------+
+| order_id | product_id | order_date | sales |
++----------+------------+------------+-------+
+|        1 |        101 | 2025-01-01 |    10 |
+|        2 |        102 | 2025-01-05 |    15 |
+|        3 |        101 | 2025-01-10 |    20 |
+|        4 |        105 | 2025-01-20 |    60 |
+|        5 |        104 | 2025-02-15 |    25 |
+|        6 |        104 | 2025-03-15 |    50 |
+|        7 |        102 | 2025-03-10 |    30 |
+|        8 |        101 | 2025-02-18 |    90 |
+|        9 |        101 | 2025-03-10 |    20 |
+|       10 |        102 | 2025-01-05 |    60 |
++----------+------------+------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,product_id,sales,row_number() over(order by sales desc)sales_rank;
+ERROR 1054 (42S22): Unknown column 'order_id' in 'field list'
+mysql> select order_id,product_id,sales,row_number() over(order by sales desc)sales_rank from orders;
++----------+------------+-------+------------+
+| order_id | product_id | sales | sales_rank |
++----------+------------+-------+------------+
+|        8 |        101 |    90 |          1 |
+|        4 |        105 |    60 |          2 |
+|       10 |        102 |    60 |          3 |
+|        6 |        104 |    50 |          4 |
+|        7 |        102 |    30 |          5 |
+|        5 |        104 |    25 |          6 |
+|        3 |        101 |    20 |          7 |
+|        9 |        101 |    20 |          8 |
+|        2 |        102 |    15 |          9 |
+|        1 |        101 |    10 |         10 |
++----------+------------+-------+------------+
+10 rows in set (0.05 sec)
+
+mysql> select order_id,product_id,sales,row_number() over(order by sales desc)sales_ranks from orders;
++----------+------------+-------+-------------+
+| order_id | product_id | sales | sales_ranks |
++----------+------------+-------+-------------+
+|        8 |        101 |    90 |           1 |
+|        4 |        105 |    60 |           2 |
+|       10 |        102 |    60 |           3 |
+|        6 |        104 |    50 |           4 |
+|        7 |        102 |    30 |           5 |
+|        5 |        104 |    25 |           6 |
+|        3 |        101 |    20 |           7 |
+|        9 |        101 |    20 |           8 |
+|        2 |        102 |    15 |           9 |
+|        1 |        101 |    10 |          10 |
++----------+------------+-------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,product_id,sales,rank() over(order by sales desc)sales_ranks from orders;
++----------+------------+-------+-------------+
+| order_id | product_id | sales | sales_ranks |
++----------+------------+-------+-------------+
+|        8 |        101 |    90 |           1 |
+|        4 |        105 |    60 |           2 |
+|       10 |        102 |    60 |           2 |
+|        6 |        104 |    50 |           4 |
+|        7 |        102 |    30 |           5 |
+|        5 |        104 |    25 |           6 |
+|        3 |        101 |    20 |           7 |
+|        9 |        101 |    20 |           7 |
+|        2 |        102 |    15 |           9 |
+|        1 |        101 |    10 |          10 |
++----------+------------+-------+-------------+
+10 rows in set (0.01 sec)
+
+mysql> select order_id,product_id,sales,dense_rank() over(order by sales desc)sales_ranks from orders;
++----------+------------+-------+-------------+
+| order_id | product_id | sales | sales_ranks |
++----------+------------+-------+-------------+
+|        8 |        101 |    90 |           1 |
+|        4 |        105 |    60 |           2 |
+|       10 |        102 |    60 |           2 |
+|        6 |        104 |    50 |           3 |
+|        7 |        102 |    30 |           4 |
+|        5 |        104 |    25 |           5 |
+|        3 |        101 |    20 |           6 |
+|        9 |        101 |    20 |           6 |
+|        2 |        102 |    15 |           7 |
+|        1 |        101 |    10 |           8 |
++----------+------------+-------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,product_id,sales,row_number() over(partition by product_id order by sales)highsales from orders;
++----------+------------+-------+-----------+
+| order_id | product_id | sales | highsales |
++----------+------------+-------+-----------+
+|        1 |        101 |    10 |         1 |
+|        3 |        101 |    20 |         2 |
+|        9 |        101 |    20 |         3 |
+|        8 |        101 |    90 |         4 |
+|        2 |        102 |    15 |         1 |
+|        7 |        102 |    30 |         2 |
+|       10 |        102 |    60 |         3 |
+|        5 |        104 |    25 |         1 |
+|        6 |        104 |    50 |         2 |
+|        4 |        105 |    60 |         1 |
++----------+------------+-------+-----------+
+10 rows in set (0.02 sec)
+
+mysql> select order_id,product_id,sales,row_number() over(partition by product_id order by sales desc)highsales from orders;
++----------+------------+-------+-----------+
+| order_id | product_id | sales | highsales |
++----------+------------+-------+-----------+
+|        8 |        101 |    90 |         1 |
+|        3 |        101 |    20 |         2 |
+|        9 |        101 |    20 |         3 |
+|        1 |        101 |    10 |         4 |
+|       10 |        102 |    60 |         1 |
+|        7 |        102 |    30 |         2 |
+|        2 |        102 |    15 |         3 |
+|        6 |        104 |    50 |         1 |
+|        5 |        104 |    25 |         2 |
+|        4 |        105 |    60 |         1 |
++----------+------------+-------+-----------+
+10 rows in set (0.00 sec)
+
+mysql> select * from (select order_id,product_id,sales,row_number() over(partition by product_id order by sales desc)highsales from orders)t where highsales=1;
++----------+------------+-------+-----------+
+| order_id | product_id | sales | highsales |
++----------+------------+-------+-----------+
+|        8 |        101 |    90 |         1 |
+|       10 |        102 |    60 |         1 |
+|        6 |        104 |    50 |         1 |
+|        4 |        105 |    60 |         1 |
++----------+------------+-------+-----------+
+4 rows in set (0.02 sec)
+
+mysql> select * from (select order_id,product_id,sales,row_number() over( order by sales desc)lowestsales from orders)t where lowestsales=7,8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',8' at line 1
+mysql> select * from (select order_id,product_id,sales,row_number() over( order by sales desc)lowestsales from orders)t where lowestsales=7,8;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',8' at line 1
+mysql> select * from (select order_id,product_id,sales,row_number() over( order by sales)lowestSales from orders)t where lowestSales <=2 ;
++----------+------------+-------+-------------+
+| order_id | product_id | sales | lowestSales |
++----------+------------+-------+-------------+
+|        1 |        101 |    10 |           1 |
+|        2 |        102 |    15 |           2 |
++----------+------------+-------+-------------+
+2 rows in set (0.02 sec)
+
+mysql> select order_id,product_id,sales,row_number() over( order by sales)lowestSales from orders;
++----------+------------+-------+-------------+
+| order_id | product_id | sales | lowestSales |
++----------+------------+-------+-------------+
+|        1 |        101 |    10 |           1 |
+|        2 |        102 |    15 |           2 |
+|        3 |        101 |    20 |           3 |
+|        9 |        101 |    20 |           4 |
+|        5 |        104 |    25 |           5 |
+|        7 |        102 |    30 |           6 |
+|        6 |        104 |    50 |           7 |
+|        4 |        105 |    60 |           8 |
+|       10 |        102 |    60 |           9 |
+|        8 |        101 |    90 |          10 |
++----------+------------+-------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Orders (
+    ->     order_id INT,
+    ->     product_id INT,
+    ->     customer_id INT,
+    ->     salesperson_id INT,
+    ->     order_date varchar(100),
+    ->     ship_date varchar(100),
+    ->     order_status VARCHAR(20),
+    ->     ship_address VARCHAR(100),
+    ->     bill_address VARCHAR(100),
+    ->     quantity INT,
+    ->     sales INT
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 12
+mysql>    CREATE TABLE Orders (
+    ->     order_id INT,
+    ->     product_id INT,
+    ->     customer_id INT,
+    ->     salesperson_id INT,
+    ->     order_date varchar(100),
+    ->     ship_date varchar(100),
+    ->     order_status VARCHAR(20),
+    ->     ship_address VARCHAR(100),
+    ->     bill_address VARCHAR(100),
+    ->     quantity INT,
+    ->     sales INT
+    -> );
+ERROR 1050 (42S01): Table 'orders' already exists
+mysql> INSERT INTO Orders VALUES
+    -> (1, 101, 2, 3, '2024-04-01', '2024-04-05', 'Shipped', '123 Main St', '456 Billing st', 1, 10),
+    ->
+    -> (2, 102, 3, 3, '2024-04-05', '2024-04-10', 'Shipped', '456 Elm St', '789 Billing st', 1, 15),
+    ->
+    -> (3, 101, 1, 4, '2024-04-10', '2024-04-25', 'Shipped', '789 Maple St', '789 Maple st', 2, 20),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Shipped', '987 Victory lane', '', 2, 60),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Delivered','987 Victory lane', '', 2, 60),
+    ->
+    -> (5, 104, 2, 5, '2024-05-01', '2024-05-05', 'Shipped', '345 Oak St', "678 Pine st", 1, 25),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', null, 2, 50),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door way', 2, 50),
+    ->
+    -> (6, 101, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door Way', 2, 50),
+    ->
+    -> (7, 102, 3, 5, '2024-05-08', '2024-05-20', 'Shipped', '111 Main St', '222 Billing', 0, 60);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> CREATE TABLE Orders (
+    ->     order_id INT,
+    ->     product_id INT,
+    ->     customer_id INT,
+    ->     salesperson_id INT,
+    ->     order_date varchar(100),
+    ->     ship_date varchar(100),
+    ->     order_status VARCHAR(20),
+    ->     ship_address VARCHAR(100),
+    ->     bill_address VARCHAR(100),
+    ->     quantity INT,
+    ->     sales INT
+    ->     );
+ERROR 1050 (42S01): Table 'orders' already exists
+mysql> CREATE TABLE shipping (
+    ->     order_id INT,
+    ->     product_id INT,
+    ->     customer_id INT,
+    ->     salesperson_id INT,
+    ->     order_date varchar(100),
+    ->     ship_date varchar(100),
+    ->     order_status VARCHAR(20),
+    ->     ship_address VARCHAR(100),
+    ->     bill_address VARCHAR(100),
+    ->     quantity INT,
+    ->     sales INT);
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> NSERT INTO shipping VALUES
+    -> (1, 101, 2, 3, '2024-04-01', '2024-04-05', 'Shipped', '123 Main St', '456 Billing st', 1, 10),
+    ->
+    -> (2, 102, 3, 3, '2024-04-05', '2024-04-10', 'Shipped', '456 Elm St', '789 Billing st', 1, 15),
+    ->
+    -> (3, 101, 1, 4, '2024-04-10', '2024-04-25', 'Shipped', '789 Maple St', '789 Maple st', 2, 20),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Shipped', '987 Victory lane', '', 2, 60),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Delivered','987 Victory lane', '', 2, 60),
+    ->
+    -> (5, 104, 2, 5, '2024-05-01', '2024-05-05', 'Shipped', '345 Oak St', "678 Pine st", 1, 25),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', null, 2, 50),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door way', 2, 50),
+    ->
+    -> (6, 101, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door Way', 2, 50),
+    ->
+    -> (7, 102, 3, 5, '2024-05-08', '2024-05-20', 'Shipped', '111 Main St', '222 Billing', 0, 60);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NSERT INTO shipping VALUES
+(1, 101, 2, 3, '2024-04-01', '2024-04-05', 'Shipped',' at line 1
+mysql> INSERT INTO shipping VALUES
+    -> (1, 101, 2, 3, '2024-04-01', '2024-04-05', 'Shipped', '123 Main St', '456 Billing st', 1, 10),
+    ->
+    -> (2, 102, 3, 3, '2024-04-05', '2024-04-10', 'Shipped', '456 Elm St', '789 Billing st', 1, 15),
+    ->
+    -> (3, 101, 1, 4, '2024-04-10', '2024-04-25', 'Shipped', '789 Maple St', '789 Maple st', 2, 20),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Shipped', '987 Victory lane', '', 2, 60),
+    ->
+    -> (4, 105, 1, 3, '2024-04-20', '2024-04-25', 'Delivered','987 Victory lane', '', 2, 60),
+    ->
+    -> (5, 104, 2, 5, '2024-05-01', '2024-05-05', 'Shipped', '345 Oak St', "678 Pine st", 1, 25),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', null, 2, 50),
+    ->
+    -> (6, 104, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door way', 2, 50),
+    ->
+    -> (6, 101, 3, 5, '2024-05-05', '2024-05-10', 'Delivered', '543 Belmont Rd', '3768 Door Way', 2, 50),
+    ->
+    -> (7, 102, 3, 5, '2024-05-08', '2024-05-20', 'Shipped', '111 Main St', '222 Billing', 0, 60);
+Query OK, 10 rows affected (0.02 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from shipping;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Delivered    | 987 Victory lane |                |        2 |    60 |
+|        5 |        104 |           2 |              5 | 2024-05-01 | 2024-05-05 | Shipped      | 345 Oak St       | 678 Pine st    |        1 |    25 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | NULL           |        2 |    50 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door way  |        2 |    50 |
+|        6 |        101 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door Way  |        2 |    50 |
+|        7 |        102 |           3 |              5 | 2024-05-08 | 2024-05-20 | Shipped      | 111 Main St      | 222 Billing    |        0 |    60 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * ,row_number() over(order by order_id,order_date) unique_id from shipping;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+-----------+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales | unique_id |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+-----------+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |         1 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |         2 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |         3 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |         4 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Delivered    | 987 Victory lane |                |        2 |    60 |         5 |
+|        5 |        104 |           2 |              5 | 2024-05-01 | 2024-05-05 | Shipped      | 345 Oak St       | 678 Pine st    |        1 |    25 |         6 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | NULL           |        2 |    50 |         7 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door way  |        2 |    50 |         8 |
+|        6 |        101 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door Way  |        2 |    50 |         9 |
+|        7 |        102 |           3 |              5 | 2024-05-08 | 2024-05-20 | Shipped      | 111 Main St      | 222 Billing    |        0 |    60 |        10 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+-----------+
+10 rows in set (0.01 sec)
+
+mysql> select * from shipping limit 4d;
+ERROR 1327 (42000): Undeclared variable: 4d
+mysql> select * from shipping limit 4;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+4 rows in set (0.02 sec)
+
+mysql> select * from shipping limit 5;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Delivered    | 987 Victory lane |                |        2 |    60 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * ,row_number() over(partition by order_id order by order_date desc)rr from shipping;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales | rr |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |  1 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |  1 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |  1 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |  1 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Delivered    | 987 Victory lane |                |        2 |    60 |  2 |
+|        5 |        104 |           2 |              5 | 2024-05-01 | 2024-05-05 | Shipped      | 345 Oak St       | 678 Pine st    |        1 |    25 |  1 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | NULL           |        2 |    50 |  1 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door way  |        2 |    50 |  2 |
+|        6 |        101 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door Way  |        2 |    50 |  3 |
+|        7 |        102 |           3 |              5 | 2024-05-08 | 2024-05-20 | Shipped      | 111 Main St      | 222 Billing    |        0 |    60 |  1 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+10 rows in set (0.00 sec)
+
+mysql> select * from (select * ,row_number() over(partition by order_id order by order_date desc)rr from shipping)t where rr=1;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address   | quantity | sales | rr |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+|        1 |        101 |           2 |              3 | 2024-04-01 | 2024-04-05 | Shipped      | 123 Main St      | 456 Billing st |        1 |    10 |  1 |
+|        2 |        102 |           3 |              3 | 2024-04-05 | 2024-04-10 | Shipped      | 456 Elm St       | 789 Billing st |        1 |    15 |  1 |
+|        3 |        101 |           1 |              4 | 2024-04-10 | 2024-04-25 | Shipped      | 789 Maple St     | 789 Maple st   |        2 |    20 |  1 |
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Shipped      | 987 Victory lane |                |        2 |    60 |  1 |
+|        5 |        104 |           2 |              5 | 2024-05-01 | 2024-05-05 | Shipped      | 345 Oak St       | 678 Pine st    |        1 |    25 |  1 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | NULL           |        2 |    50 |  1 |
+|        7 |        102 |           3 |              5 | 2024-05-08 | 2024-05-20 | Shipped      | 111 Main St      | 222 Billing    |        0 |    60 |  1 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+----------------+----------+-------+----+
+7 rows in set (0.00 sec)
+
+mysql> select * from (select * ,row_number() over(partition by order_id order by order_date desc)rr from shipping)t where rr>1;
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+---------------+----------+-------+----+
+| order_id | product_id | customer_id | salesperson_id | order_date | ship_date  | order_status | ship_address     | bill_address  | quantity | sales | rr |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+---------------+----------+-------+----+
+|        4 |        105 |           1 |              3 | 2024-04-20 | 2024-04-25 | Delivered    | 987 Victory lane |               |        2 |    60 |  2 |
+|        6 |        104 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door way |        2 |    50 |  2 |
+|        6 |        101 |           3 |              5 | 2024-05-05 | 2024-05-10 | Delivered    | 543 Belmont Rd   | 3768 Door Way |        2 |    50 |  3 |
++----------+------------+-------------+----------------+------------+------------+--------------+------------------+---------------+----------+-------+----+
+3 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+------------+------------+-------+
+| order_id | product_id | order_date | sales |
++----------+------------+------------+-------+
+|        1 |        101 | 2025-01-01 |    10 |
+|        2 |        102 | 2025-01-05 |    15 |
+|        3 |        101 | 2025-01-10 |    20 |
+|        4 |        105 | 2025-01-20 |    60 |
+|        5 |        104 | 2025-02-15 |    25 |
+|        6 |        104 | 2025-03-15 |    50 |
+|        7 |        102 | 2025-03-10 |    30 |
+|        8 |        101 | 2025-02-18 |    90 |
+|        9 |        101 | 2025-03-10 |    20 |
+|       10 |        102 | 2025-01-05 |    60 |
++----------+------------+------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select order_id,sales,ntile92) over(order bby sales desc) from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') over(order bby sales desc) from orders' at line 1
+mysql> select order_id,sales,ntile92) over(order by sales desc) from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') over(order by sales desc) from orders' at line 1
+mysql> select order_id,sales,ntile(2) over(order by sales desc) from orders;
++----------+-------+------------------------------------+
+| order_id | sales | ntile(2) over(order by sales desc) |
++----------+-------+------------------------------------+
+|        8 |    90 |                                  1 |
+|        4 |    60 |                                  1 |
+|       10 |    60 |                                  1 |
+|        6 |    50 |                                  1 |
+|        7 |    30 |                                  1 |
+|        5 |    25 |                                  2 |
+|        3 |    20 |                                  2 |
+|        9 |    20 |                                  2 |
+|        2 |    15 |                                  2 |
+|        1 |    10 |                                  2 |
++----------+-------+------------------------------------+
+10 rows in set (0.02 sec)
+
+mysql> select order_id,sales,ntile(3) over(order by sales desc) from orders;
++----------+-------+------------------------------------+
+| order_id | sales | ntile(3) over(order by sales desc) |
++----------+-------+------------------------------------+
+|        8 |    90 |                                  1 |
+|        4 |    60 |                                  1 |
+|       10 |    60 |                                  1 |
+|        6 |    50 |                                  1 |
+|        7 |    30 |                                  2 |
+|        5 |    25 |                                  2 |
+|        3 |    20 |                                  2 |
+|        9 |    20 |                                  3 |
+|        2 |    15 |                                  3 |
+|        1 |    10 |                                  3 |
++----------+-------+------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select *,case when buckets=1 then "high" when buckets=2 then "medium" when buckets=3 then "low" end(select order_id,sales,ntile(3) over(order by sales desc)Bsegments from orders)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(select order_id,sales,ntile(3) over(order by sales desc)Bsegments from orders)t' at line 1
+mysql> select *,case when buckets=1 then "high" when buckets=2 then "medium" when buckets=3 then "low" end from (select order_id,sales,ntile(3) over(order by sales desc)Bsegments from orders)t;
+ERROR 1054 (42S22): Unknown column 'buckets' in 'field list'
+mysql> select *,case when buckets=1 then "high" when buckets=2 then "medium" when buckets=3 then "low" end from (select order_id,sales,ntile(3) over(order by sales desc)Buckets from orders)t;
++----------+-------+---------+--------------------------------------------------------------------------------------------+
+| order_id | sales | Buckets | case when buckets=1 then "high" when buckets=2 then "medium" when buckets=3 then "low" end |
++----------+-------+---------+--------------------------------------------------------------------------------------------+
+|        8 |    90 |       1 | high                                                                                       |
+|        4 |    60 |       1 | high                                                                                       |
+|       10 |    60 |       1 | high                                                                                       |
+|        6 |    50 |       1 | high                                                                                       |
+|        7 |    30 |       2 | medium                                                                                     |
+|        5 |    25 |       2 | medium                                                                                     |
+|        3 |    20 |       2 | medium                                                                                     |
+|        9 |    20 |       3 | low                                                                                        |
+|        2 |    15 |       3 | low                                                                                        |
+|        1 |    10 |       3 | low                                                                                        |
++----------+-------+---------+--------------------------------------------------------------------------------------------+
+10 rows in set (0.02 sec)
+
+mysql> select *,case when buckets=1 then "high" when buckets=2 then "medium" when buckets=3 then "low" end segmentofsales from (select order_id,sales,ntile(3) over(order by sales desc)Buckets from orders)t;
++----------+-------+---------+----------------+
+| order_id | sales | Buckets | segmentofsales |
++----------+-------+---------+----------------+
+|        8 |    90 |       1 | high           |
+|        4 |    60 |       1 | high           |
+|       10 |    60 |       1 | high           |
+|        6 |    50 |       1 | high           |
+|        7 |    30 |       2 | medium         |
+|        5 |    25 |       2 | medium         |
+|        3 |    20 |       2 | medium         |
+|        9 |    20 |       3 | low            |
+|        2 |    15 |       3 | low            |
+|        1 |    10 |       3 | low            |
++----------+-------+---------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> select product_id,sales,percent_rank() over(order by sales desc)sale_% from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '% from orders' at line 1
+mysql> select product_id,sales,percent_rank() over(order by sales desc)sale% from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '% from orders' at line 1
+mysql> select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders;
++------------+-------+--------------------+
+| product_id | sales | sale_percent       |
++------------+-------+--------------------+
+|        101 |    90 |                  0 |
+|        105 |    60 | 0.1111111111111111 |
+|        102 |    60 | 0.1111111111111111 |
+|        104 |    50 | 0.3333333333333333 |
+|        102 |    30 | 0.4444444444444444 |
+|        104 |    25 | 0.5555555555555556 |
+|        101 |    20 | 0.6666666666666666 |
+|        101 |    20 | 0.6666666666666666 |
+|        102 |    15 | 0.8888888888888888 |
+|        101 |    10 |                  1 |
++------------+-------+--------------------+
+10 rows in set (0.00 sec)
+
+mysql> select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders;
++------------+-------+--------------+
+| product_id | sales | sale_percent |
++------------+-------+--------------+
+|        101 |    90 |          0.1 |
+|        105 |    60 |          0.3 |
+|        102 |    60 |          0.3 |
+|        104 |    50 |          0.4 |
+|        102 |    30 |          0.5 |
+|        104 |    25 |          0.6 |
+|        101 |    20 |          0.8 |
+|        101 |    20 |          0.8 |
+|        102 |    15 |          0.9 |
+|        101 |    10 |            1 |
++------------+-------+--------------+
+10 rows in set (0.02 sec)
+
+mysql> select * ,(sales_percent * 100)percentfall from ( select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders)t where percentfall <=0.4;
+ERROR 1054 (42S22): Unknown column 'sales_percent' in 'field list'
+mysql> select * ,(sale_percent * 100)percentfall from ( select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders)t where percentfall <=0.4;
+ERROR 1054 (42S22): Unknown column 'percentfall' in 'where clause'
+mysql> select * ,(sale_percent * 100)percentfall from ( select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders)t where sale_percent <=0.4;
++------------+-------+--------------+-------------+
+| product_id | sales | sale_percent | percentfall |
++------------+-------+--------------+-------------+
+|        101 |    90 |          0.1 |          10 |
+|        105 |    60 |          0.3 |          30 |
+|        102 |    60 |          0.3 |          30 |
+|        104 |    50 |          0.4 |          40 |
++------------+-------+--------------+-------------+
+4 rows in set (0.01 sec)
+
+mysql> select * ,(sale_percent * 100)percentfall from ( select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders)t where sale_percent >0.4;
++------------+-------+--------------+-------------+
+| product_id | sales | sale_percent | percentfall |
++------------+-------+--------------+-------------+
+|        102 |    30 |          0.5 |          50 |
+|        104 |    25 |          0.6 |          60 |
+|        101 |    20 |          0.8 |          80 |
+|        101 |    20 |          0.8 |          80 |
+|        102 |    15 |          0.9 |          90 |
+|        101 |    10 |            1 |         100 |
++------------+-------+--------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * ,concat(sale_percent * 100,"%")percentfall from ( select product_id,sales,cume_dist() over(order by sales desc)sale_percent from orders)t where sale_percent >0.4;
++------------+-------+--------------+-------------+
+| product_id | sales | sale_percent | percentfall |
++------------+-------+--------------+-------------+
+|        102 |    30 |          0.5 | 50%         |
+|        104 |    25 |          0.6 | 60%         |
+|        101 |    20 |          0.8 | 80%         |
+|        101 |    20 |          0.8 | 80%         |
+|        102 |    15 |          0.9 | 90%         |
+|        101 |    10 |            1 | 100%        |
++------------+-------+--------------+-------------+
+6 rows in set (0.01 sec)
+
+mysql> select * ,concat(sale_percent * 100,"%")percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+--------------------+
+| product_id | sales | sale_percent       | percentfall        |
++------------+-------+--------------------+--------------------+
+|        102 |    30 | 0.4444444444444444 | 44.44444444444444% |
+|        104 |    25 | 0.5555555555555556 | 55.55555555555556% |
+|        101 |    20 | 0.6666666666666666 | 66.66666666666666% |
+|        101 |    20 | 0.6666666666666666 | 66.66666666666666% |
+|        102 |    15 | 0.8888888888888888 | 88.88888888888889% |
+|        101 |    10 |                  1 | 100%               |
++------------+-------+--------------------+--------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * ,round(concat(sale_percent * 100,"%",3))percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+-------------+
+| product_id | sales | sale_percent       | percentfall |
++------------+-------+--------------------+-------------+
+|        102 |    30 | 0.4444444444444444 |          44 |
+|        104 |    25 | 0.5555555555555556 |          56 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        102 |    15 | 0.8888888888888888 |          89 |
+|        101 |    10 |                  1 |         100 |
++------------+-------+--------------------+-------------+
+6 rows in set, 6 warnings (0.02 sec)
+
+mysql> select * ,round(concat(sale_percent * 100,2"%"))percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
+ERROR 1583 (42000): Incorrect parameters in the call to native function 'concat'
+mysql> select * ,round(concat(sale_percent * 100,"%",2))percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+-------------+
+| product_id | sales | sale_percent       | percentfall |
++------------+-------+--------------------+-------------+
+|        102 |    30 | 0.4444444444444444 |          44 |
+|        104 |    25 | 0.5555555555555556 |          56 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        102 |    15 | 0.8888888888888888 |          89 |
+|        101 |    10 |                  1 |         100 |
++------------+-------+--------------------+-------------+
+6 rows in set, 6 warnings (0.00 sec)
+
+mysql> select * ,round(concat(sale_percent * 100,"%"),2)percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+-------------+
+| product_id | sales | sale_percent       | percentfall |
++------------+-------+--------------------+-------------+
+|        102 |    30 | 0.4444444444444444 |       44.44 |
+|        104 |    25 | 0.5555555555555556 |       55.56 |
+|        101 |    20 | 0.6666666666666666 |       66.67 |
+|        101 |    20 | 0.6666666666666666 |       66.67 |
+|        102 |    15 | 0.8888888888888888 |       88.89 |
+|        101 |    10 |                  1 |         100 |
++------------+-------+--------------------+-------------+
+6 rows in set, 6 warnings (0.00 sec)
+
+mysql> select * ,round(concat(sale_percent * 100,"%",2))percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+-------------+
+| product_id | sales | sale_percent       | percentfall |
++------------+-------+--------------------+-------------+
+|        102 |    30 | 0.4444444444444444 |          44 |
+|        104 |    25 | 0.5555555555555556 |          56 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        101 |    20 | 0.6666666666666666 |          67 |
+|        102 |    15 | 0.8888888888888888 |          89 |
+|        101 |    10 |                  1 |         100 |
++------------+-------+--------------------+-------------+
+6 rows in set, 6 warnings (0.00 sec)
+
+mysql> select * ,concat(round(sale_percent * 100,2),"%")percentfall from (select product_id,sales,percent_rank() over(order by sales desc)sale_percent from orders)t where sale_percent>0.4;
++------------+-------+--------------------+-------------+
+| product_id | sales | sale_percent       | percentfall |
++------------+-------+--------------------+-------------+
+|        102 |    30 | 0.4444444444444444 | 44.44%      |
+|        104 |    25 | 0.5555555555555556 | 55.56%      |
+|        101 |    20 | 0.6666666666666666 | 66.67%      |
+|        101 |    20 | 0.6666666666666666 | 66.67%      |
+|        102 |    15 | 0.8888888888888888 | 88.89%      |
+|        101 |    10 |                  1 | 100%        |
++------------+-------+--------------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+------------+------------+-------+
+| order_id | product_id | order_date | sales |
++----------+------------+------------+-------+
+|        1 |        101 | 2025-01-01 |    10 |
+|        2 |        102 | 2025-01-05 |    15 |
+|        3 |        101 | 2025-01-10 |    20 |
+|        4 |        105 | 2025-01-20 |    60 |
+|        5 |        104 | 2025-02-15 |    25 |
+|        6 |        104 | 2025-03-15 |    50 |
+|        7 |        102 | 2025-03-10 |    30 |
+|        8 |        101 | 2025-02-18 |    90 |
+|        9 |        101 | 2025-03-10 |    20 |
+|       10 |        102 | 2025-01-05 |    60 |
++----------+------------+------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select order_date,sales,sum(sales) ,lag(sum(sales)) over(order by order_date)perviousM from orders group by order_date;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'pipeline_data.orders.sales' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select order_date,sales,sum(sales) ,lag(sum(sales)) over(order by order_date)perviousM from orders group by order_date;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'pipeline_data.orders.sales' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select order_date,sum(sales) ,lag(sum(sales)) over(order by order_date)perviousM from orders group by order_date;
++------------+------------+-----------+
+| order_date | sum(sales) | perviousM |
++------------+------------+-----------+
+| 2025-01-01 |         10 |      NULL |
+| 2025-01-05 |         75 |        10 |
+| 2025-01-10 |         20 |        75 |
+| 2025-01-20 |         60 |        20 |
+| 2025-02-15 |         25 |        60 |
+| 2025-02-18 |         90 |        25 |
+| 2025-03-10 |         50 |        90 |
+| 2025-03-15 |         50 |        50 |
++------------+------------+-----------+
+8 rows in set (0.02 sec)
+
+mysql> select order_date,sum(sales) ,lead(sum(sales)) over(order by order_date)nextM from orders group by order_date;
++------------+------------+-------+
+| order_date | sum(sales) | nextM |
++------------+------------+-------+
+| 2025-01-01 |         10 |    75 |
+| 2025-01-05 |         75 |    20 |
+| 2025-01-10 |         20 |    60 |
+| 2025-01-20 |         60 |    25 |
+| 2025-02-15 |         25 |    90 |
+| 2025-02-18 |         90 |    50 |
+| 2025-03-10 |         50 |    50 |
+| 2025-03-15 |         50 |  NULL |
++------------+------------+-------+
+8 rows in set (0.01 sec)
+
+mysql> select order_date,sum(sales) ,lead(sum(sales)) over(order by order_date)nextM from orders group by order_date;
++------------+------------+-------+
+| order_date | sum(sales) | nextM |
++------------+------------+-------+
+| 2025-01-01 |         10 |    75 |
+| 2025-01-05 |         75 |    20 |
+| 2025-01-10 |         20 |    60 |
+| 2025-01-20 |         60 |    25 |
+| 2025-02-15 |         25 |    90 |
+| 2025-02-18 |         90 |    50 |
+| 2025-03-10 |         50 |    50 |
+| 2025-03-15 |         50 |  NULL |
++------------+------------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select *, currentmonthsales- previousM  as MOM select( order_date) orderMonth,sum(sales)currentmonthsales ,lag(sum(sales)) over(order by order_date)previousM from orders group by order_date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select( order_date) orderMonth,sum(sales)currentmonthsales ,lag(sum(sales)) over' at line 1
+mysql> select *, currentmonthsales- previousM  as MOM ,cast((currentmonthsales- previousM) as float), select( order_date) orderMonth,sum(sales)currentmonthsales ,lag(sum(sales)) over(order by order_date)previousM from orders group by order_date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select( order_date) orderMonth,sum(sales)currentmonthsales ,lag(sum(sales)) over' at line 1
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    -> MOM_percentage from ( select orderDate,sum(sales)currentmonth, lag(sum(sales))over(order by orderDate)previousmonth from orders group by orderDate)t;
+ERROR 1054 (42S22): Unknown column 'orderDate' in 'field list'
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    -> MOM_percentage from ( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by order_date)previousmonth from orders group by orderDate)t;
+ERROR 1054 (42S22): Unknown column 'orderDate' in 'group statement'
+mysql> MOM_percentage from ( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by order_date)previousmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MOM_percentage from ( select order_date,sum(sales)currentmonth, lag(sum(sales))o' at line 1
+mysql> MOM_percentage from ( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by order_date)previousmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MOM_percentage from ( select order_date,sum(sales)currentmonth, lag(sum(sales))o' at line 1
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    ->  from ( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by order_date)previousmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from ( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by or' at line 2
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    -> MOM_percentage from( select order_date,sum(sales)currentmonth, lag(sum(sales))over(order by order_date)previousmonth from orders group by order_date)t;
++------------+--------------+---------------+------+----------------+
+| order_date | currentmonth | previousmonth | MOM  | MOM_percentage |
++------------+--------------+---------------+------+----------------+
+| 2025-01-01 |           10 |          NULL | NULL |           NULL |
+| 2025-01-05 |           75 |            10 |   65 |            0.6 |
+| 2025-01-10 |           20 |            75 |  -55 |           -0.6 |
+| 2025-01-20 |           60 |            20 |   40 |            0.4 |
+| 2025-02-15 |           25 |            60 |  -35 |           -0.4 |
+| 2025-02-18 |           90 |            25 |   65 |            0.6 |
+| 2025-03-10 |           50 |            90 |  -40 |           -0.4 |
+| 2025-03-15 |           50 |            50 |    0 |              0 |
++------------+--------------+---------------+------+----------------+
+8 rows in set (0.01 sec)
+
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    -> MOM_percentage from( select order_date,sum(sales)currentmonth, lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
+ERROR 1054 (42S22): Unknown column 'previousmonth' in 'field list'
+mysql> select *, currentmonth - previousmonth as MOM ,round(cast((currentmonth - previousmonth) as float )/100,1) as
+    -> MOM_percentage from( select order_date,sum(sales)currentmonth, lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
+ERROR 1054 (42S22): Unknown column 'previousmonth' in 'field list'
+mysql> select *, currentmonth - nextmonth as MOM ,round(cast((currentmonth - nextmonth) as float )/100,1) as
+    -> MOM_percentage from( select order_date,sum(sales)currentmonth, lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
++------------+--------------+-----------+------+----------------+
+| order_date | currentmonth | nextmonth | MOM  | MOM_percentage |
++------------+--------------+-----------+------+----------------+
+| 2025-01-01 |           10 |        75 |  -65 |           -0.6 |
+| 2025-01-05 |           75 |        20 |   55 |            0.6 |
+| 2025-01-10 |           20 |        60 |  -40 |           -0.4 |
+| 2025-01-20 |           60 |        25 |   35 |            0.4 |
+| 2025-02-15 |           25 |        90 |  -65 |           -0.6 |
+| 2025-02-18 |           90 |        50 |   40 |            0.4 |
+| 2025-03-10 |           50 |        50 |    0 |              0 |
+| 2025-03-15 |           50 |      NULL | NULL |           NULL |
++------------+--------------+-----------+------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> select *,sum(sales) from orders;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'pipeline_data.orders.order_id'; this is incompatible with sql_mode=only_full_group_by
+mysql> select *,sum(sales) over (order by order_date) from orders;
++----------+------------+------------+-------+---------------------------------------+
+| order_id | product_id | order_date | sales | sum(sales) over (order by order_date) |
++----------+------------+------------+-------+---------------------------------------+
+|        1 |        101 | 2025-01-01 |    10 |                                    10 |
+|        2 |        102 | 2025-01-05 |    15 |                                    85 |
+|       10 |        102 | 2025-01-05 |    60 |                                    85 |
+|        3 |        101 | 2025-01-10 |    20 |                                   105 |
+|        4 |        105 | 2025-01-20 |    60 |                                   165 |
+|        5 |        104 | 2025-02-15 |    25 |                                   190 |
+|        8 |        101 | 2025-02-18 |    90 |                                   280 |
+|        7 |        102 | 2025-03-10 |    30 |                                   330 |
+|        9 |        101 | 2025-03-10 |    20 |                                   330 |
+|        6 |        104 | 2025-03-15 |    50 |                                   380 |
++----------+------------+------------+-------+---------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select *,sum(sales) over () from orders;
++----------+------------+------------+-------+--------------------+
+| order_id | product_id | order_date | sales | sum(sales) over () |
++----------+------------+------------+-------+--------------------+
+|        1 |        101 | 2025-01-01 |    10 |                380 |
+|        2 |        102 | 2025-01-05 |    15 |                380 |
+|        3 |        101 | 2025-01-10 |    20 |                380 |
+|        4 |        105 | 2025-01-20 |    60 |                380 |
+|        5 |        104 | 2025-02-15 |    25 |                380 |
+|        6 |        104 | 2025-03-15 |    50 |                380 |
+|        7 |        102 | 2025-03-10 |    30 |                380 |
+|        8 |        101 | 2025-02-18 |    90 |                380 |
+|        9 |        101 | 2025-03-10 |    20 |                380 |
+|       10 |        102 | 2025-01-05 |    60 |                380 |
++----------+------------+------------+-------+--------------------+
+10 rows in set (0.00 sec)
+
+mysql> MOM_percentage from( select order_date,sum(sales)currentmonth, lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MOM_percentage from( select order_date,sum(sales)currentmonth, lead(sum(sales))o' at line 1
+mysql> MOM_percentage from( select order_date,sum(sales)currentmonth,lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MOM_percentage from( select order_date,sum(sales)currentmonth,lead(sum(sales))ov' at line 1
+mysql> MOM_percentage from( select order_date,sum(sales)currentmonth,lead(sum(sales))over(order by order_date)nextmonth from orders group by order_date)t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MOM_percentage from( select order_date,sum(sales)currentmonth,lead(sum(sales))ov' at line 1
+mysql> select order_id,product_id,sales, first_value(sales) over(partition by product_id order by sales)lowestsales,last_value(sales) over(partition by product_id order by sales rows between current row and unbounded following)highestSales from orders;
++----------+------------+-------+-------------+--------------+
+| order_id | product_id | sales | lowestsales | highestSales |
++----------+------------+-------+-------------+--------------+
+|        1 |        101 |    10 |          10 |           90 |
+|        3 |        101 |    20 |          10 |           90 |
+|        9 |        101 |    20 |          10 |           90 |
+|        8 |        101 |    90 |          10 |           90 |
+|        2 |        102 |    15 |          15 |           60 |
+|        7 |        102 |    30 |          15 |           60 |
+|       10 |        102 |    60 |          15 |           60 |
+|        5 |        104 |    25 |          25 |           50 |
+|        6 |        104 |    50 |          25 |           50 |
+|        4 |        105 |    60 |          60 |           60 |
++----------+------------+-------+-------------+--------------+
+10 rows in set (0.11 sec)
+
+mysql> select order_id,product_id,sales, first_value(sales) over(partition by product_id order by sales)lowestsales,last_value(sales) over(partition by product_id order by sales rows between current row and unbounded following)highestfirst_value(sales) over(partition by product_id order by sales) salesdifrence from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(sales) over(partition by product_id order by sales) salesdifrence from orders' at line 1
+mysql> select order_id,product_id,sales, first_value(sales) over(partition by product_id order by sales)lowestsales,last_value(sales) over(partition by product_id order by sales rows between current row and unbounded following)highest,first_value(sales) over(partition by product_id order by sales) salesdifrence from orders;
++----------+------------+-------+-------------+---------+---------------+
+| order_id | product_id | sales | lowestsales | highest | salesdifrence |
++----------+------------+-------+-------------+---------+---------------+
+|        1 |        101 |    10 |          10 |      90 |            10 |
+|        3 |        101 |    20 |          10 |      90 |            10 |
+|        9 |        101 |    20 |          10 |      90 |            10 |
+|        8 |        101 |    90 |          10 |      90 |            10 |
+|        2 |        102 |    15 |          15 |      60 |            15 |
+|        7 |        102 |    30 |          15 |      60 |            15 |
+|       10 |        102 |    60 |          15 |      60 |            15 |
+|        5 |        104 |    25 |          25 |      50 |            25 |
+|        6 |        104 |    50 |          25 |      50 |            25 |
+|        4 |        105 |    60 |          60 |      60 |            60 |
++----------+------------+-------+-------------+---------+---------------+
+10 rows in set (0.02 sec)
+
+mysql> select order_id,product_id,sales, first_value(sales) over(partition by product_id order by sales)lowestsales,last_value(sales) over(partition by product_id order by sales rows between current row and unbounded following)highest,sales - first_value(sales) over(partition by product_id order by sales) salesdifrence from orders;
++----------+------------+-------+-------------+---------+---------------+
+| order_id | product_id | sales | lowestsales | highest | salesdifrence |
++----------+------------+-------+-------------+---------+---------------+
+|        1 |        101 |    10 |          10 |      90 |             0 |
+|        3 |        101 |    20 |          10 |      90 |            10 |
+|        9 |        101 |    20 |          10 |      90 |            10 |
+|        8 |        101 |    90 |          10 |      90 |            80 |
+|        2 |        102 |    15 |          15 |      60 |             0 |
+|        7 |        102 |    30 |          15 |      60 |            15 |
+|       10 |        102 |    60 |          15 |      60 |            45 |
+|        5 |        104 |    25 |          25 |      50 |             0 |
+|        6 |        104 |    50 |          25 |      50 |            25 |
+|        4 |        105 |    60 |          60 |      60 |             0 |
++----------+------------+-------+-------------+---------+---------------+
+10 rows in set (0.02 sec)
